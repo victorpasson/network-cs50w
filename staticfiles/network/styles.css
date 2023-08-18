@@ -1,0 +1,56 @@
+#posts > div {
+    box-sizing: border-box;
+    border-radius: 10px;
+    padding: 10px 10px 2px 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 3px gray;
+}
+
+#posts div > p:last-child{
+    text-align:center;
+}
+
+.body {
+    padding: 10px 30px;
+}
+
+.edit {
+    font-size: 1.4em;
+    float: right;
+    box-sizing: border-box;
+    margin: 0;
+    cursor: pointer;
+}
+
+h3 {
+    cursor:pointer;
+    display: inline-block;
+}
+
+h3:after {
+    content: " says...";
+    font-size: 0.6em;
+    font-weight: normal;
+}
+
+nav a {
+    cursor:pointer;
+}
+
+i {
+    font-size: 1.4em;
+    margin: 0;
+    padding: 0;
+    cursor:pointer;
+}
+
+a, a:hover, a:visited, a:active {
+    text-decoration: none;
+}
+
+@media (min-width: 768px) {
+    .body {
+        width: calc(60vw - 20px);
+        margin: 0 auto;
+    }
+}

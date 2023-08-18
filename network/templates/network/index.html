@@ -1,0 +1,72 @@
+{% extends "network/layout.html" %}
+{% load static %}
+
+{% block head %}
+    {% if user.is_authenticated %}
+    <script src="{% static 'network/posts.js' %}"
+            defer
+            data-csrf="{{ csrf_token }}"></script>
+    {% endif %}
+    <script src="https://kit.fontawesome.com/9f62e38146.js" crossorigin="anonymous"></script>
+{% endblock %}
+
+{% block body %}
+
+    {% if not user.is_authenticated %}
+        <div id="posts">
+            <h1>All Posts</h1>
+            <hr>
+            {% for post in posts %}
+                <div>
+                    <h3><a class="text-dark" href="{% url 'login' %}">{{ post.user }}</a></h3>
+                    <p class="my-2">{{ post.content }}</p>
+                    <p class="my-0 text-secondary">{{ post.date }}</p>
+                    <p class="mt-0 mb-3"><a class="text-danger" href="{% url 'login' %}"><i class="fa-regular fa-heart"></i></a></p>
+                </div>
+            {% empty%}
+                No Posts
+            {% endfor %}
+            <nav>
+                <ul class="pagination justify-content-center">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="" tabindex="-1">Previous</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="{% url 'login' %}">Next</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    {% endif %}
+
+    {% if user.is_authenticated %}
+    <div id="userPage">
+        <div id="userPageName"></div>
+        <div id="userInfo"></div>
+        <hr>
+    </div>
+
+    <div id="allPosts">
+        <h2>New Post</h2>
+        <form id="NewPost">
+            <div class="form-group">
+                <textarea class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+                <input class="btn btn-primary" type="submit" value="Post"/>
+            </div>
+        </form>
+        <h1>All Posts</h1>
+        <hr>
+    </div>
+
+    <div id="following">
+        <h1>Following Page</h1>
+        <hr>
+    </div>
+
+    <div id="posts">
+        No Posts Here
+    </div>
+    {% endif %}
+{% endblock %}
